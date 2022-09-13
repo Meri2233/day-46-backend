@@ -71,7 +71,8 @@ router.post('/token',async(req,res)=>{
     try{
         const payload = jwt.verify(token,process.env.REFRESH_TOKEN_SECRET);
         delete payload.exp;
-        const accessToken = jwt.sign(payload,process.env.ACCESS_TOKEN_SECRET,{expiresIn:"30s"});
+        console.log(payload);
+        const accessToken = jwt.sign(payload,process.env.ACCESS_TOKEN_SECRET,{expiresIn:"5m"});
         res.status(200).json({accessToken:accessToken});
     }
     catch(e){
